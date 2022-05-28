@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css\tips.css">
+  <title>EcoHub - Principal</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg px-5"
+    style="background: linear-gradient(to right, #000000, #0f9b0f); border-bottom: 1px solid greenyellow; font-family: 'Cairo', sans-serif;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/" style="font-size: 38px; font-family: 'Cairo', sans-serif; font-weight: 900">
+        <img src="{{ url_for('static', filename='images/ecohub-nav-logo.png') }}" alt="nav-logo" width="55" height="55"
+          class="d-inline-block align-text-center" style="position: relative; bottom: 4px">
+        <span style="color: white;">EcoHub</span>
+      </a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item" style="font-size: 20px;">
+            <a class="nav-link" id="home" aria-current="page" href="/" style="color: white;">Home</a>
+          </li>
+          <li class="nav-item" style="font-size: 20px;">
+            <a id="ranking" class="nav-link" href="/ranking" style="color: white;">Ranking</a>
+          </li>
+          <li class="nav-item" style="font-size: 20px;">
+            <a class="nav-link" href="/" style="color: white;">Premiação</a>
+          </li>
+          <li class="nav-item" style="font-size: 20px;">
+            <a id="tips" class="nav-link" href="/tips" style="color: #c3ea27; font-weight: 600;">Dicas</a>
+          </li>
+          <li class="nav-item" style="font-size: 20px; opacity:50;" id="user-welcome"><span class="nav-link" style="color: white;" id="user-welcome-text">Olá</span></li>
+          <li class="nav-item" style="font-size: 20px; opacity:50;" id="logout-item">
+            <button class="btn btn-danger" type="submit" style="font-weight: 700; font-size: 12px; position: relative; top: 5px; left: 5px; color: black;" id="logout-btn">Sair</button>
+          </li>
+          <li class="nav-item" style="font-size: 20px;" id="login-item">
+            <a id="login" class="nav-link" href="/register" style="color: white;">Login/Cadastro</a>
+          </li>
+        </ul>
+        <form action="/tips/search" method="get" class="d-flex" role="search">
+            <input name="garbage_name" class="form-control me-2" type="search" placeholder="Procurar dicas" aria-label="Search" id="tips-search">
+            <button class="btn btn-outline-dark" type="submit" style="font-weight: 700">Procurar</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="tab-content" id="pills-tabContent">
+
+    <div class="tab-pane fade show active" id="pills-plastic" role="tabpanel" aria-labelledby="pills-plastic-tab"
+      tabindex="0">
+      <section style="background-color: #ffcd00; background-image: linear-gradient(315deg, #ffcd00 0%, #005238 74%); height: 100vh; margin-top: 24px;">
+        <div class="row row-cols-1 row-cols-md-3 g-4 py-3"
+          style="width: 100%; padding-right: 4rem!important; padding-left: 4rem!important;">
+          <!-- TODO: Refactor query to pass garbage type as parameter and return only garbages of selected type -->
+          {% for garbage in list_garbage %}
+          <div class="card" style="border: 3px solid black;">
+            <a href="garbage/{{garbage.id}}" style="text-decoration: none; color: black; font-family: 'Cairo', sans-serif;">
+              <!-- TODO: substitute current src with entity's URI attribute -->
+              <img src="{{ url_for('static', filename=garbage.ds_url) }}" class="card-img-top py-2"
+                alt="Garbage image"/>
+              <div class="card-body">
+                <h5 class="card-title">{{garbage.name}}</h5>
+                {% if garbage.description|length > 120 %}
+                  <p class="card-text">{{garbage.description[0:120]}} ...</p>
+                {% else %}
+                  <p class="card-text">{{garbage.description}} ...</p>
+                {% endif %}
+                <div class="py-3">
+                  <a href="garbage/{{garbage.id}}" class="btn btn-success">Ver dicas</a>
+                </div>
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+    </div>
+
+  </div>
+<script>
+  {% if token %}
+    console.log("Token: {{token}}");
+    document.cookie = "access-token={{token.access_token}}; path=/";
+    document.cookie = "username={{token.username}}; path=/";
+  {% endif %}
+
+  function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+  document.getElementById('logout-btn').onclick = function () {
+    document.cookie = "access-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.location.reload();
+  }
+
+  if (getCookie('access-token')) {
+    document.getElementById('user-welcome-text').innerText += ", " + getCookie('username') + " :)";
+    document.getElementById('login-item').style.display = "none";
+  } else {
+    document.getElementById('user-welcome').style.display = "none";
+    document.getElementById('user-welcome-text').style.display = "none";
+    document.getElementById('logout-item').style.display = "none";
+  }
+</script>
+</body>
+
+</html>

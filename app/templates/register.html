@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <title>EcoHub - Login/Cadastro</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg px-5" style="background: linear-gradient(to right, #000000, #0f9b0f); border-bottom: 1px solid greenyellow; font-family: 'Cairo', sans-serif;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#" style="font-size: 38px; font-family: 'Cairo', sans-serif; font-weight: 900">
+        <img src="{{ url_for('static', filename='images/ecohub-nav-logo.png') }}" alt="nav-logo" width="55" height="55" class="d-inline-block align-text-center" style="position: relative; bottom: 4px">
+        <span style="color: white;">EcoHub</span>
+      </a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item" style="font-size: 20px;">
+            <a class="nav-link" id="home" aria-current="page" href="/" style="color: white;">Home</a>
+          </li>
+          <li class="nav-item" style="font-size: 20px;">
+            <a id="ranking" class="nav-link" href="/ranking" style="color: white;">Ranking</a>
+          </li>
+          <li class="nav-item" style="font-size: 20px;">
+            <a class="nav-link" href="/" style="color: white;">Premiação</a>
+          </li>
+          <li class="nav-item" style="font-size: 20px;">
+            <a id="tips" class="nav-link" href="/tips" style="color: white;">Dicas</a>
+          </li>
+          <li class="nav-item" style="font-size: 20px; opacity:50;" id="user-welcome"><span class="nav-link" style="color: white;" id="user-welcome-text">Olá, </span></li>
+          <li class="nav-item" style="font-size: 20px; opacity:50;" id="logout-item">
+            <button class="btn btn-danger" type="submit" style="font-weight: 700; font-size: 12px; position: relative; top: 5px; left: 5px; color: black;" id="logout-btn">Sair</button>
+          </li>
+          <li class="nav-item" style="font-size: 20px;" id="login-item">
+            <a id="login" class="nav-link" href="/register" style="color: white;">Login/Cadastro</a>
+          </li>
+        </ul>
+        <form action="/tips/search" method="get" class="d-flex" role="search">
+            <input name="garbage_name" class="form-control me-2" type="search" placeholder="Procurar dicas" aria-label="Search" id="tips-search">
+            <button class="btn btn-outline-dark" type="submit" style="font-weight: 700">Procurar</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <section class="h-100" style="font-family: 'Cairo', sans-serif; background-color: #ffcd00; background-image: linear-gradient(315deg, #ffcd00 0%, #005238 74%);">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col">
+              <a href="/login" style="color: white; font-size:25px; text-decoration: none;">Já possui conta?</a>
+          <div class="card card-registration my-4" style="border: 1px solid black">
+            <form action="/register" method="post">
+            <div class="row g-0">
+              <div class="col-xl-6 d-none d-xl-block">
+                <img src="{{ url_for('static', filename='images/ecohub-signup.png') }}" alt="Sample photo" class="img-fluid"
+                  style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; height: 100%;" />
+              </div>
+                <div class="col-xl-6">
+                  <div class="card-body p-md-5 text-black">
+                    <h3 class="mb-5 text-uppercase">Cadastro</h3>
+                    <div class="row">
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <input type="text" id="name" name="name" class="form-control form-control-lg" />
+                          <label class="form-label" for="name">Nome</label>
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <input type="text" id="last_name" name="last_name" class="form-control form-control-lg" />
+                          <label class="form-label" for="last_name">Sobrenome</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      <input type="text" id="cpf" name="cpf" class="form-control form-control-lg" />
+                      <label class="form-label" for="cpf">CPF</label>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      <input type="text" id="address" name="address" class="form-control form-control-lg" />
+                      <label class="form-label" for="address">Endereço</label>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <input type="text" id="complement" name="complement" class="form-control form-control-lg" />
+                          <label class="form-label" for="complement">Complemento</label>
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <input type="text" id="cep" name="cep" class="form-control form-control-lg" />
+                          <label class="form-label" for="cep">CEP</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      <input type="date" id="birth_date" name="birth_date" class="form-control form-control-lg" />
+                      <label class="form-label" for="birth_date">Data de nascimento</label>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      <input type="text" id="email" name="email" class="form-control form-control-lg" />
+                      <label class="form-label" for="email">E-mail</label>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      <input type="password" id="password" name="password" class="form-control form-control-lg" />
+                      <label class="form-label" for="password">Senha</label>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      <input type="password" id="password rewritten" name="password rewritten" class="form-control form-control-lg" />
+                      <label class="form-label" for="password rewritten">Repita a senha</label>
+                    </div>
+
+                    <div class="form-check d-flex justify-content-center mb-5">
+                      <input class="form-check-input me-2" type="checkbox" value="" id="form6Example3c" />
+                      <label class="form-check-label" for="form6Example3c">
+                        Li e concordo com os <a href="#!">termos de serviço.</a>
+                      </label>
+                      <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+                      <label class="form-check-label" for="form2Example3">
+                        Desejo receber atualizações via e-mail.
+                      </label>
+                    </div>
+
+                    <div class="d-flex justify-content-end pt-3">
+                      <button type="button" class="btn btn-light btn-lg">Limpar</button>
+                      <button type="submit" class="btn btn-dark btn-lg ms-2">Cadastrar</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<script>
+  {% if token %}
+    console.log("Token: {{token}}");
+    document.cookie = "access-token={{token.access_token}}; path=/";
+    document.cookie = "username={{token.username}}; path=/";
+  {% endif %}
+
+  function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+  document.getElementById('logout-btn').onclick = function () {
+    document.cookie = "access-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.location.reload();
+  }
+
+  if (getCookie('access-token')) {
+    document.getElementById('user-welcome-text').innerText += ", " + getCookie('username') + " :)";
+    document.getElementById('login-item').style.display = "none";
+  } else {
+    document.getElementById('user-welcome').style.display = "none";
+    document.getElementById('user-welcome-text').style.display = "none";
+    document.getElementById('logout-item').style.display = "none";
+  }
+</script>
+</body>
+</html>

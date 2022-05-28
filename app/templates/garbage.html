@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/">
+  <title>EcoHub - </title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg px-5" style="background: linear-gradient(to right, #000000, #0f9b0f); border-bottom: 1px solid greenyellow; font-family: 'Cairo', sans-serif;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/" style="font-size: 38px; font-family: 'Cairo', sans-serif; font-weight: 900">
+        <img src="{{ url_for('static', filename='images/ecohub-nav-logo.png') }}" alt="nav-logo" width="55" height="55" class="d-inline-block align-text-center" style="position: relative; bottom: 4px">
+        <span style="color: white;">EcoHub</span>
+      </a>
+      <div class="collapse navbar-collapse" id="navbarSpportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item" style="font-size: 20px;">
+            <a class="nav-link" id="home" aria-current="page" href="/" style="color: white;">Home</a>
+          </li>
+          <li class="nav-item" style="font-size: 20px;">
+            <a id="ranking" class="nav-link" href="/ranking" style="color: white;">Ranking</a>
+          </li>
+          <li class="nav-item" style="font-size: 20px;">
+            <a class="nav-link" href="/prizes" style="color: white;">Premiação</a>
+          </li>
+          <li class="nav-item" style="font-size: 20px;">
+            <a id="tips" class="nav-link" href="/tips" style="color: #c3ea27; font-weight: 600;">Dicas</a>
+          </li>
+          <li class="nav-item" style="font-size: 20px; opacity:50;" id="user-welcome"><span class="nav-link" style="color: white;" id="user-welcome-text">Olá, </span></li>
+          <li class="nav-item" style="font-size: 20px; opacity:50;" id="logout-item">
+            <button class="btn btn-danger" type="submit" style="font-weight: 700; font-size: 12px; position: relative; top: 5px; left: 5px; color: black;" id="logout-btn">Sair</button>
+          </li>
+          <li class="nav-item" style="font-size: 20px;" id="login-item">
+            <a id="login" class="nav-link" href="/register" style="color: white;">Login/Cadastro</a>
+          </li>
+        </ul>
+        <form action="/tips/search" method="get" class="d-flex" role="search">
+            <input name="garbage_name" class="form-control me-2" type="search" placeholder="Procurar dicas" aria-label="Search" id="tips-search">
+            <button class="btn btn-outline-dark" type="submit" style="font-weight: 700">Procurar</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <nav class="navbar navbar-expand-lg px-5 bg-dark">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item" style="font-size: 20px;">
+            <div style="color: greenyellow; font-weight: 600;">
+              {{ garbage.type_of_garbage.name_pt }} > {{ garbage.name }}
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <section
+    style="background: background-color: #ffcd00; background-image: linear-gradient(315deg, #ffcd00 0%, #005238 74%);">
+    <div class="card mb-3" id="garbage-card" style="font-family: 'Cairo', sans-serif;">
+      <div class="row">
+        <div class="col">
+          <img src="{{ url_for('static', filename=garbage.ds_url) }}" class="card-img-top"
+            style="max-height: 480px">
+        </div>
+        <div class="col" style="font-family: 'Cairo', sans-serif;">
+          <h1 class="card-title" style="text-align:center; margin-top:15px; height:'card-img-top'; max-height:480px;">
+            {{ garbage.name }}</h1>
+          <p class="card-text" style="font-size:20px;">
+            {{ garbage.description }}
+            <br><br>
+          </p>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>
+          <div style="font-size: 30px; height: 25px; font-family: 'Cairo', sans-serif;">Dicas
+            <!-- TODO: Add token validation -->
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#commentModal"
+              style="color: white; font-size: 12px;" id="new-tip-btn">
+              + Nova dica
+            </button>
+            <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog scrollable">
+                <div class="modal-content" style="background-color: #ffcd00; background-image: linear-gradient(315deg, #ffcd00 0%, #005238 74%);">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="commentModalLabel" style="font-family: 'Cairo', sans-serif; color: white; font-weight: 600;">Nova dica
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <form action="/register/tip/{{ garbage.id }}/" method="post" id="new-tip-form">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                          <label for="user-name" class="col-form-label" style="font-family: 'Cairo', sans-serif; color: white; font-weight: 600;">Usuário:</label>
+                          <!-- TODO: Populate field with token.username -->
+                          <input type="text" name="" class="form-control" placeholder="Gustavo" id="user-name" disabled>
+                        </div>
+                        <div class="mb-3">
+                          <label for="comment-message" class="col-form-label" style="font-family: 'Cairo', sans-serif; color: white; font-weight: 600;">Dica:</label>
+                          <textarea name="message" class="form-control" id="comment-message" placeholder="A dica deve ser clara e objetiva, orientando o descarte correto do material." style="height: 100px;"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Fechar</button>
+                      <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Salvar dica</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </p>
+      </div>
+
+    </div>
+    <div class="accordion" id="accordionPanelsStayOpenExample"
+      style="background: background-color: #ffcd00; background-image: linear-gradient(315deg, #ffcd00 0%, #005238 74%);">
+      {% for comment in comments %}
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-heading{{comment.id}}">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#panelsStayOpen-collapse{{comment.id}}" aria-expanded="false"
+            aria-controls="panelsStayOpen-collapse{{comment.id}}">
+            <h6>{{comment.username}} - {{comment.creation_date}} - {{comment.up_votes}} upvotes
+              {% if comment.is_coop %}
+              <span class="badge bg-success">Cooperativa</span>
+              {% endif %}
+
+              {% if comment.id == top_comment.id %}
+              <span class="badge bg-danger">Top</span>
+              {% endif %}
+            </h6>
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapse{{comment.id}}" class="accordion-collapse collapse"
+          aria-labelledby="panelsStayOpen-heading{{comment.id}}">
+          <form action="/register/like_comment/{{ garbage.id }}/{{ comment.id }}/" id="upvote-button-form" method="post">
+            <button class="btn" style="position:relative; left:5px; top: 8px; background-color: white;" id="upvote-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-up-square" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.5 9.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+              </svg>
+              <span style="font-family: 'Cairo', sans-serif; position:relative; left: 3px; top: 1px; font-weight: 600;">Votar</span>
+            </button>
+          </form>
+          <div class="accordion-body">
+            {{comment.message}}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <script>
+    function getCookie(cname) {
+      let name = cname + "=";
+      let decodedCookie = decodeURIComponent(document.cookie);
+      let ca = decodedCookie.split(';');
+      for(let i = 0; i <ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+    if (getCookie('access-token')) {
+      document.getElementById('user-welcome-text').innerText += getCookie('username') + " :)";
+      document.getElementById('login-item').style.display = "none";
+    } else {
+      document.getElementById('user-welcome').style.display = "none";
+      document.getElementById('user-welcome-text').style.display = "none";
+      document.getElementById('logout-item').style.display = "none";
+    }
+
+    document.getElementById('new-tip-form').action += getCookie('access-token');
+    document.getElementById('upvote-button-form').action += getCookie('access-token');
+
+    document.getElementById('logout-btn').onclick = function () {
+      document.cookie = "access-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.location.reload();
+    }
+
+    const userCookie = getCookie('username');
+    document.getElementById('user-name').placeholder = userCookie;
+
+    if (!userCookie) {
+      document.getElementById('new-tip-btn').style.display = "none";
+    }
+
+    let upvoteButton = document.getElementById('upvote-btn');
+
+    upvoteButton.onclick = function () {
+      upvoteButton.style.backgroundColor = "orange";
+      if (userCookie) {
+        let numberOfUpvotesContainer = document.getElementById('upvotes-number');
+        let numberOfUpvotes = parseInt(numberOfUpvotesContainer.innerText);
+
+        if (upvoteButton.style.backgroundColor == "white") {
+          upvoteButton.style.backgroundColor = "orange";
+          numberOfUpvotes += 1;
+          numberOfUpvotesContainer.innerText = numberOfUpvotes;
+        } else {
+          upvoteButton.style.backgroundColor = "white";
+          numberOfUpvotes -= 1;
+          numberOfUpvotesContainer.innerText = numberOfUpvotes;
+        }
+      } else {
+        alert("Você deve estar logado para votar em dicas.");
+      }
+    };
+
+  </script>
+</body>
+
+</html>
