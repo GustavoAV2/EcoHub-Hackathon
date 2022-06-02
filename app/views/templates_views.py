@@ -41,7 +41,7 @@ def register_view():
     credentials = request.values
     user = create_user(credentials)
     if user:
-        return render_template('index.html', user=user.serialize())
+        return render_template('login.html')
     return render_template('register.html', status=False)
 
 

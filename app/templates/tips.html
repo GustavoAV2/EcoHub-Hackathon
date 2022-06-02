@@ -72,10 +72,11 @@
         type="button" role="tab" aria-controls="pills-metal" aria-selected="false">Metal</button>
     </li>
   </ul>
-  <div class="tab-content" id="pills-tabContent">
+  <div class="tab-content" id="pills-tabContent"
+  style="background: rgb(0,0,0); background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(15,155,15,1) 97%);">
     <div class="tab-pane fade show active" id="pills-plastic" role="tabpanel" aria-labelledby="pills-plastic-tab"
       tabindex="0">
-      <section style="background-color: #ffcd00; background-image: linear-gradient(315deg, #ffcd00 0%, #005238 74%); height: 100vh; margin-top: 24px;">
+      <section style="height: 100vh; margin-top: 24px;">
         <div class="row row-cols-1 row-cols-md-3 g-4 py-3"
           style="width: 100%; padding-right: 4rem!important; padding-left: 4rem!important;">
           <!-- TODO: Refactor query to pass garbage type as parameter and return only garbages of selected type -->
@@ -84,7 +85,7 @@
             <a href="garbage/{{garbage.id}}" style="text-decoration: none; color: black; font-family: 'Cairo', sans-serif;">
               <!-- TODO: substitute current src with entity's URI attribute -->
               <img src="{{ url_for('static', filename=garbage.ds_url) }}" class="card-img-top py-2"
-                alt="Garbage image"/>
+                alt="Garbage image" style="max-height: 325px; max-weight: 200px;"/>
               <div class="card-body">
                 <h5 class="card-title">{{garbage.name}}</h5>
                 {% if garbage.description|length > 120 %}
@@ -103,7 +104,8 @@
       </section>
     </div>
     <div class="tab-pane fade" id="pills-glass" role="tabpanel" aria-labelledby="pills-glass-tab" tabindex="0">
-      <section style="background-color: #ffcd00; background-image: linear-gradient(315deg, #ffcd00 0%, #005238 74%); height: 100vh; margin-top: 24px;">
+      <section style="background: rgb(0,0,0); background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(15,155,15,1) 97%);
+                      height: 100vh; margin-top: 24px;">
         <div class="row row-cols-1 row-cols-md-3 g-4 py-3"
           style="width: 100%; padding-right: 4rem!important; padding-left: 4rem!important;">
           <!-- TODO: Refactor query to pass garbage type as parameter and return only garbages of selected type -->
@@ -112,7 +114,7 @@
             <a href="garbage/{{garbage.id}}" style="text-decoration: none; color: black; font-family: 'Cairo', sans-serif;">
               <!-- TODO: substitute current src with entity's URI attribute -->
               <img src="{{ url_for('static', filename=garbage.ds_url) }}" class="card-img-top py-2"
-                alt="Garbage image"/>
+                alt="Garbage image" style="max-height: 325px; max-weight: 200px;"/>
               <div class="card-body">
                 <h5 class="card-title">{{garbage.name}}</h5>
                 {% if garbage.description|length > 120 %}
@@ -131,7 +133,8 @@
       </section>
     </div>
     <div class="tab-pane fade" id="pills-paper" role="tabpanel" aria-labelledby="pills-paper-tab" tabindex="0">
-      <section style="background-color: #ffcd00; background-image: linear-gradient(315deg, #ffcd00 0%, #005238 74%); height: 100vh; margin-top: 24px;">
+      <section style="background: rgb(0,0,0); background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(15,155,15,1) 97%);
+                      height: 100vh; margin-top: 24px;">
         <div class="row row-cols-1 row-cols-md-3 g-4 py-3"
           style="width: 100%; padding-right: 4rem!important; padding-left: 4rem!important;">
           <!-- TODO: Refactor query to pass garbage type as parameter and return only garbages of selected type -->
@@ -140,7 +143,7 @@
             <a href="garbage/{{garbage.id}}" style="text-decoration: none; color: black; font-family: 'Cairo', sans-serif;">
               <!-- TODO: substitute current src with entity's URI attribute -->
               <img src="{{ url_for('static', filename=garbage.ds_url) }}" class="card-img-top py-2"
-                alt="Garbage image"/>
+                alt="Garbage image" style="max-height: 325px; max-weight: 200px;"/>
               <div class="card-body">
                 <h5 class="card-title">{{garbage.name}}</h5>
                 {% if garbage.description|length > 120 %}
@@ -159,7 +162,8 @@
       </section>
     </div>
     <div class="tab-pane fade" id="pills-metal" role="tabpanel" aria-labelledby="pills-metal-tab" tabindex="0">
-      <section style="background-color: #ffcd00; background-image: linear-gradient(315deg, #ffcd00 0%, #005238 74%); height: 100vh; margin-top: 24px;">
+      <section style="background: rgb(0,0,0); background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(15,155,15,1) 97%);
+                      height: 100vh; margin-top: 24px;">
         <div class="row row-cols-1 row-cols-md-3 g-4 py-3"
           style="width: 100%; padding-right: 4rem!important; padding-left: 4rem!important;">
           <!-- TODO: Refactor query to pass garbage type as parameter and return only garbages of selected type -->
@@ -168,7 +172,7 @@
             <a href="garbage/{{garbage.id}}" style="text-decoration: none; color: black; font-family: 'Cairo', sans-serif;">
               <!-- TODO: substitute current src with entity's URI attribute -->
               <img src="{{ url_for('static', filename=garbage.ds_url) }}" class="card-img-top py-2"
-                alt="Garbage image"/>
+                alt="Garbage image" style="max-height: 325px; max-weight: 200px;"/>
               <div class="card-body">
                 <h5 class="card-title">{{garbage.name}}</h5>
                 {% if garbage.description|length > 120 %}
