@@ -36,9 +36,6 @@
             <a id="ranking" class="nav-link" href="/ranking" style="color: white;">Ranking</a>
           </li>
           <li class="nav-item" style="font-size: 20px;">
-            <a class="nav-link" href="/" style="color: white;">Premiação</a>
-          </li>
-          <li class="nav-item" style="font-size: 20px;">
             <a id="tips" class="nav-link" href="/tips" style="color: #c3ea27; font-weight: 600;">Dicas</a>
           </li>
           <li class="nav-item" style="font-size: 20px; opacity:50;" id="user-welcome"><span class="nav-link" style="color: white;" id="user-welcome-text">Olá</span></li>
@@ -57,11 +54,12 @@
     </div>
   </nav>
 
-  <div class="tab-content" id="pills-tabContent">
+  <div class="tab-content" id="pills-tabContent"
+       style="background: rgb(0,0,0); background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(15,155,15,1) 97%);">
 
     <div class="tab-pane fade show active" id="pills-plastic" role="tabpanel" aria-labelledby="pills-plastic-tab"
       tabindex="0">
-      <section style="background-color: #ffcd00; background-image: linear-gradient(315deg, #ffcd00 0%, #005238 74%); height: 100vh; margin-top: 24px;">
+      <section style="height: 100vh; margin-top: 24px;">
         <div class="row row-cols-1 row-cols-md-3 g-4 py-3"
           style="width: 100%; padding-right: 4rem!important; padding-left: 4rem!important;">
           <!-- TODO: Refactor query to pass garbage type as parameter and return only garbages of selected type -->
@@ -70,7 +68,7 @@
             <a href="garbage/{{garbage.id}}" style="text-decoration: none; color: black; font-family: 'Cairo', sans-serif;">
               <!-- TODO: substitute current src with entity's URI attribute -->
               <img src="{{ url_for('static', filename=garbage.ds_url) }}" class="card-img-top py-2"
-                alt="Garbage image"/>
+                alt="Garbage image" style="max-height: 325px; max-weight: 200px;"/>
               <div class="card-body">
                 <h5 class="card-title">{{garbage.name}}</h5>
                 {% if garbage.description|length > 120 %}
