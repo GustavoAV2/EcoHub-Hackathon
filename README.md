@@ -21,7 +21,7 @@ Após criar sua conta e logar você sera redirecionado para a Home Page, agora a
 
 #### Visualizar e criar dicas:
 
-Em "Dicas" você tera acesso as categorias de lixo reciclavel, você pode escolher uma categoria e assim encontrar aos materias cadastrados daquela respectiva categoria.
+Em "Dicas" você tera acesso as categorias de lixo reciclavel, você pode escolher uma categoria e assim encontrar os materias cadastrados daquela respectiva categoria.
 
 ![img.png](docs/images/img-garbage-list.png)
 
