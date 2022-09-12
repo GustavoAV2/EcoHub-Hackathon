@@ -14,7 +14,7 @@ Clique em "Login/Cadastro" crie sua conta ou clique em "Ja possuo uma conta" par
 
 ![img.png](docs/images/img-login.png)
 
-Após criar sua conta e logar você sera redirecionado para a Home Page, agora autenticado com o seu usuário, você terá a todas as funcionalidades do sistema.
+Após criar sua conta e logar você sera redirecionado para a Home Page, agora autenticado com o seu usuário, você terá acesso a todas as funcionalidades do sistema.
 
 ![img.png](docs/images/img-logged.png)
 
