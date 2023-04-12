@@ -2,6 +2,9 @@
 EcoHub é o projeto oferecido como solução para o ReciclaHack Hackathon feito pela Hackathon Brasil.
 É um polo de informação e comunicação para reciclagem, proporcionando informações de fácil acesso e comunicação entre 
 usuários e centros de reciclagem. Link para a página de informações do Hackathon: https://www.abre.org.br/reciclahack/.
+---
+EcoHub is the project offered as solution to the ReciclaHack Hackathon by Hackathon Brasil, made with Python and Flask Framework. It is an information and communication hub for recycling, providing easily accessible information and communication between users and recycling centers.
+Link to Hackathon info page: https://www.abre.org.br/reciclahack/.
 
 ### Como funciona?
 
