@@ -6,7 +6,7 @@ usuários e centros de reciclagem. Link para a página de informações do Hacka
 
 ---
 EcoHub is the project offered as solution to the ReciclaHack Hackathon by Hackathon Brasil, made with Python and Flask Framework. It is an information and communication hub for recycling, providing easily accessible information and communication between users and recycling centers.
-Link to Hackathon info page: [Recicla Hack](https://www.abre.org.br/reciclahack/.){:target="_blank"}
+Link to Hackathon info page: [Recicla Hack](https://www.abre.org.br/reciclahack/.)
 
 ### Como funciona?
 
