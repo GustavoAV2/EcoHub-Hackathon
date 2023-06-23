@@ -63,10 +63,6 @@ Após a instalação execute o comando:
 
 `pipenv install`
 
-## Inicializar projeto:
-
-Execute o arquivo app/main.py
-
 ### Banco de dados:
 
 #### Para atualizar banco de dados depois de alterações nos modelos:
@@ -75,3 +71,7 @@ Rode os seguintes comandos:
 1º `flask db migrate`
 
 2º `flask db upgrade`
+
+## Inicializar projeto:
+
+Execute o arquivo app/main.py
