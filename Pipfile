@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-flask = "==2.1.2"
+flask = "*"
 python-dotenv = "*"
 install = "*"
 flask-jwt-extended = "*"
