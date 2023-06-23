@@ -58,7 +58,6 @@ Para instalar as dependencias crie uma Pipenv:
 
 ![img.png](docs/images/example_gnrt_pipenv.png)
 
-
 Após a instalação execute o comando:
 
 `pipenv install`
