@@ -16,7 +16,7 @@ def _register_blueprint(_app: Flask):
     _app.register_blueprint(app_views)
 
 
-app = Flask(__name__, template_folder="./templates", static_folder="./templates")
+app = Flask(__name__, template_folder="./app/templates", static_folder="./templates")
 CORS(app)
 app.config.from_object('settings')
 app.config['FLASK_ADMIN_SWATCH'] = 'Slate'
